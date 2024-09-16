@@ -5,6 +5,7 @@ import appStore, { BearState } from '../stores/app';
 
 import litLogo from '../assets/lit.svg'
 import viteLogo from '/vite.svg'
+import zustandLogo from '../assets/zustand.png'
 
 @customElement('home-page')
 export class HomePage extends LitElement {
@@ -38,6 +39,9 @@ export class HomePage extends LitElement {
         </a>
         <a href="https://lit.dev" target="_blank">
           <img src=${litLogo} class="logo lit" alt="Lit logo" />
+        </a>
+        <a href="https://github.com/pmndrs/zustand" target="_blank">
+          <img src=${zustandLogo} class="logo zustang" alt="Zustang logo" />
         </a>
       </div>
       <slot></slot>
