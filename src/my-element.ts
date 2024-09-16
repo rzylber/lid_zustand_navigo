@@ -52,7 +52,7 @@ export class MyElement extends LitElement {
   }
 
   async routerRender() {
-    // TODO: não pode ser assim, pois ele recria o component??   
+    // TODO: deveria cachear o componente abaixo, para não recriá-lo?
     if (this.route === 'home') return html`<home-page></home-page>`;
     else {
       await import('./pages/about')
