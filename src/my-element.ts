@@ -1,11 +1,11 @@
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { until } from 'lit/directives/until.js';
 import Navigo from 'navigo';
 
 import appStore, { BearState } from './stores/app';
 
 import './pages/home';
-import './pages/about';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -46,15 +46,18 @@ export class MyElement extends LitElement {
         <a href="#/about" @click=${() => this.router.navigate('/about')}>About</a>
       </nav>
       <main>
-        ${this.routerRender()}
+        ${until(this.routerRender(), html`<span>Loading...</span>`)}
       </main>
     `;
   }
 
-  routerRender() {
+  async routerRender() {
     // TODO: não pode ser assim, pois ele recria o component??   
     if (this.route === 'home') return html`<home-page></home-page>`;
-    else return html`<about-page></about-page>`;
+    else {
+      await import('./pages/about')
+      return html`<about-page></about-page>`;
+    }
   }
 
   static styles = css`
